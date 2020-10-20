@@ -49,7 +49,7 @@ print(kwadratowa(1,-2,1)) # delta = 0
 print(kwadratowa(5,90,5)) # delta > 0
 print(kwadratowa(-78,0,5))
 print(kwadratowa(0,51,5))
-print(kwadratowa(0,45,0))
+print(kwadratowa(0,-45,0))
 print(kwadratowa(1,2,10))   # zespolone 
 print(kwadratowa(-88,-5,1))
 print(kwadratowa(1,0,50))   #zespolone
