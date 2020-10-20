@@ -6,5 +6,5 @@ for i in range(30,40):
     print (req.text)
 
 #Fajna flaga z tego IDORA 35
-
+#more test for git push learning
 print("More Code Test To Git")
