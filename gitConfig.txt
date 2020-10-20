@@ -34,9 +34,14 @@ git checkout "branch name"
 *Check your git status
 git status
 
-For further updating the local to origin do these steps..,
-$> git add ‘\Test Program\TestProgram.py’
-$> git commit -m “Version 1.0.1”
+*For further updating the local to origin do these steps*
+$> git add ï¿½\Test Program\TestProgram.pyï¿½
+$> git commit -m ï¿½Version 1.0.1ï¿½
 $> git remote add origin <link of your repo>
 $> git remote -v
 $> git push -u origin master.
+
+*W sumie wystarczy*
+> git add '\Test Program\TestProgram.py'
+> git commit -m 'Version 1.0.1'
+> git push -u origin master
