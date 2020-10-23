@@ -1,6 +1,7 @@
 import re
 
 final = ''
+decString = []
 
 #zwara indeksy gdzie znajduje się '0'
 
@@ -10,6 +11,8 @@ def indexesOf0(stringArr):
         if(stringArr[i] == '0'):
             indexes.append(i)
     return indexes
+
+#rekurencja i zebranie wszystkich słów pomiędzy '0'
 
 def takeOut(givenString,stringArr): 
     takenOut = re.search(('0(.+?)0'),givenString)
@@ -28,6 +31,17 @@ def takeOut(givenString,stringArr):
     else:
         return final
 
+#zamiana na kody dziesiętne
+
+def getDecFromString(givenString):
+    global decString
+    stringArr = list(givenString)
+    for i in range(0,len(givenString)):
+        decString.append(ord(stringArr[i]))     #   wykorzystanie funkcji ord()
+    return decString                            #   podanej w poleceniu
+
+
+#Main
 
 givenString  = str(input("Wprowadź dowolny ciąg znaków: "))
 
@@ -36,10 +50,16 @@ a = re.search(('0(.+?)0'),givenString).group(1)
 if(a):
     stringArr = list(givenString)
     print(takeOut(givenString,stringArr))
+    print(getDecFromString(final))
 else:
     print("Podano jedno lub żadnych zer")
 
 
 
+
+
 # Test Cases
-    #TODO
+
+#Zakładamy, że dane są poprawne i jest minimum 5 znaków
+
+#TODO
