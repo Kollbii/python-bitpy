@@ -1,8 +1,6 @@
 import re
 
-final = ''
-
-#zwaraca indeksy gdzie znajduje się '0'
+# zwaraca indeksy gdzie znajduje się '0'
 
 def indexesOf0(stringArr):
     indexes = []
@@ -11,45 +9,43 @@ def indexesOf0(stringArr):
             indexes.append(i)
     return indexes
 
-#rekurencja i zebranie wszystkich słów pomiędzy '0'
-#EDIT: Inspiracja ipv6 - usunięcie '0' pomiędzy '0' 29-33
+# rekurencja i zebranie wszystkich słów pomiędzy '0'
+# Inspiracja ipv6 - usunięcie '0' pomiędzy '0' 24-28
 
-def takeOut(givenString,stringArr): 
+def takeOut(givenString,stringArr,g): 
+    final = g
     takenOut = re.search(('0(.+?)0'),givenString)
     indexes = indexesOf0(stringArr)
-    #print(indexes)
+    # print(indexes)
 
     if(takenOut != None):
-        global final
         takenOut = re.search(('0(.+?)0'),givenString).group(1)
     
-        #wrzucenie WSZYSTKICH zer pomiędzy 'zerami'
-
         for i in range (0,len(takenOut)):
-            if(ord(takenOut[i]) == 48):                 
+            if(ord(takenOut[i]) == 48):
                 newString = givenString[indexes[1]:]
                 newArr = list(newString)
-                return takeOut(newString,newArr)
+                return takeOut(newString,newArr,final)
 
         final += ''.join(takenOut)
         newString = givenString[indexes[1]:]
         newArr = list(newString)
-        return takeOut(newString,newArr)
+        return takeOut(newString,newArr,final)
     else:
         return final
 
-#zamiana na kody dziesiętne
+# zamiana na kody dziesiętne
 
 def getDecFromString(givenString):
     decString = []
     stringArr = list(givenString)
     for i in range(0,len(givenString)):
-        decString.append(ord(stringArr[i]))     #   wykorzystanie funkcji ord()
-    return decString                            #   podanej w poleceniu
+        decString.append(ord(stringArr[i]))     # wykorzystanie funkcji ord()
+    return decString                            # podanej w poleceniu
 
-#Main
+# Main
 
-#givenString  = str(input("Wprowadź dowolny ciąg znaków: "))
+# givenString  = str(input("Wprowadź dowolny ciąg znaków: "))
 
 def main(givenString):
     
@@ -57,27 +53,26 @@ def main(givenString):
 
     if(a):
         stringArr = list(givenString)
-        print("String po odjęciu zer:", takeOut(givenString,stringArr))
+        final = takeOut(givenString,stringArr,'')
+        sortedFinalASCII = sorted(set(getDecFromString(final)))             # usunięcie duplikatów
+        print("String po odjęciu zer:" + str(final))
         print("Kody ASCII:\n" + str(getDecFromString(final)))
-        sortedFinalASCII = sorted(getDecFromString(final))
-        my5th = list(set(sortedFinalASCII))
-        print("5 co do wartości kod ASCII: " + str(my5th[4]))
-        print(my5th)
+        print("5 co do wartości kod ASCII: " + str(sortedFinalASCII[4]))
     else:
-        print("Podano jedno lub żadnych zer")
+        return "Podano jedno lub żadnych zer"
 
 
 # Test Cases
-#Zakładamy, że dane są poprawne i jest minimum 5 znaków
+# Zakładamy, że dane są poprawne i jest minimum 5 znaków
 
-#print(main(givenString))           #USER
+print(main("0standard0"))                                         # standard | 115
+print(main("przykladbezer"))                                      # -
+print(main("wiecejniek0mpletnego"))                               # -
+print(main("aaa0Siemaneczko0Dużo0Zer0aaa"))                       # SiemaneczkoDuzoZer | 99
+print(main("000000000434854719300"))                              # 4348547193 | 55
+print(main("Pominę0Parę000Wyrazów00000BezZeraNaKoncuIPoczątku"))  # ParęWyrazów | 119
+print(main("Losowy00CiągZnaków0Oddzielony0Zerami000"))            # CiągZnakówOddzielonyZerami | 100
 
-#TODO
-    #Coś sortowanie w ostatnim przypadku nie działa
+# User Case
 
-# print(main("00Siemaneczko000Duzo0Zer0000"))
-# print(main("000000000434854719300"))
-# print(main("przykladbezer"))
-# print(main("wiecejnieko0mpletnego"))
-# print(main("0standard0"))
-print(main("Pominę0Parę000Wyrazów0BezZeraNaKoncuIPoczątku"))
+# print(main(givenString))
