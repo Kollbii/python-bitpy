@@ -30,8 +30,8 @@ def getDecFromString(givenString):
     decString = []
     stringArr = list(givenString)
     for i in range(0,len(givenString)):
-        decString.append(ord(stringArr[i]))     # wykorzystanie funkcji ord()
-    return decString                            # podanej w poleceniu
+        decString.append(ord(stringArr[i]))
+    return decString
 
 # givenString  = str(input("Wprowadź dowolny ciąg znaków: "))
 
