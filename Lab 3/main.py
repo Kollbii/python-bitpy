@@ -10,7 +10,7 @@ def indexesOf0(stringArr):
     return indexes
 
 # rekurencja i zebranie wszystkich słów pomiędzy '0'
-# Inspiracja ipv6 - usunięcie '0' pomiędzy '0' 24-28
+# Usunięcie '0' pomiędzy '0' 24-28
 
 def takeOut(givenString,stringArr,g): 
     final = g
@@ -43,10 +43,6 @@ def getDecFromString(givenString):
         decString.append(ord(stringArr[i]))     # wykorzystanie funkcji ord()
     return decString                            # podanej w poleceniu
 
-# Main
-
-# givenString  = str(input("Wprowadź dowolny ciąg znaków: "))
-
 def main(givenString):
     
     a = re.search(('0(.+?)0'),givenString)
@@ -54,13 +50,11 @@ def main(givenString):
     if(a):
         stringArr = list(givenString)
         final = takeOut(givenString,stringArr,'')
-        sortedFinalASCII = sorted(set(getDecFromString(final)))             # usunięcie duplikatów
-        print("String po odjęciu zer:" + str(final))
-        print("Kody ASCII:\n" + str(getDecFromString(final)))
-        print("5 co do wartości kod ASCII: " + str(sortedFinalASCII[4]))
+        sortedFinalASCII = sorted(set(getDecFromString(final)))           # usunięcie duplikatów
+        ret = "String po odjeciu zer: " + str(final) + "\nKody ASCII: \n" + str(getDecFromString(final)) + "\n5 co do wartości kod ASCII: " + str(sortedFinalASCII[4]) + "\n"
+        return ret
     else:
-        return "Podano jedno lub żadnych zer"
-
+        return "Podano jedno lub żadnych zer\n"
 
 # Test Cases
 # Zakładamy, że dane są poprawne i jest minimum 5 znaków
@@ -75,4 +69,5 @@ print(main("Losowy00CiągZnaków0Oddzielony0Zerami000"))            # CiągZnak�
 
 # User Case
 
+# givenString  = str(input("Wprowadź dowolny ciąg znaków: "))
 # print(main(givenString))
