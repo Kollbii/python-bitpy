@@ -1,13 +1,13 @@
 import pyautogui
 from time import sleep
 
-x = 10  #ilośc wiadomości
+x = 15  #ilośc wiadomości
 
 while True:
-    pyautogui.typewrite("TO TYLKO WIADOMOSC")
-    sleep(.500)
+    pyautogui.typewrite("KRYSTIAN SPOKOJNIE TO WIĘCEJ TESTOW")
+    sleep(.100)
     pyautogui.typewrite("\n")
-    sleep(2)
+    sleep(0.5)
     x -= 1
 
     if x == 0:
