@@ -45,13 +45,12 @@ def getDecFromString(givenString):
 
 
 def main(givenString):
-    
     a = re.search(('0(.+?)0'), givenString)
 
     if(a):
         stringArr = list(givenString)
         final = takeOut(givenString, stringArr, '')
-        sortedFinalASCII = sorted(set(getDecFromString(final)))           # usunięcie duplikatów
+        sortedFinalASCII = sorted(set(getDecFromString(final)))     # usunięcie duplikatów
         if len(sortedFinalASCII) < 5:
             return f"Jest mniej niż 5 kodów ASCII\n"
         else:
@@ -62,13 +61,13 @@ def main(givenString):
 # Test Case
 # Zakładamy, że dane są poprawne i jest minimum 5 znaków
 
-print(main("0standard0"))                                         # standard | 115
-print(main("przykladbezer"))                                      # -
-print(main("wiecejniek0mpletnego"))                               # -
-print(main("aaa0Siemaneczko0Dużo0Zer0aaa"))                       # SiemaneczkoDuzoZer | 99
-print(main("000000000434854719300"))                              # 4348547193 | 55
-print(main("Pominę0Parę000Wyrazów00000BezZeraNaKoncuIPoczątku"))  # ParęWyrazów | 119
-print(main("Losowy00CiągZnaków0Oddzielony0Zerami000"))            # CiągZnakówOddzielonyZerami | 100
+# print(main("0standard0"))                                         # standard | 115
+# print(main("przykladbezer"))                                      # -
+# print(main("wiecejniek0mpletnego"))                               # -
+# print(main("aaa0Siemaneczko0Dużo0Zer0aaa"))                       # SiemaneczkoDuzoZer | 99
+# print(main("000000000434854719300"))                              # 4348547193 | 55
+# print(main("Pominę0Parę000Wyrazów00000BezZeraNaKoncuIPoczątku"))  # ParęWyrazów | 119
+# print(main("Losowy00CiągZnaków0Oddzielony0Zerami000"))            # CiągZnakówOddzielonyZerami | 100
 
 # User Case
 
@@ -78,13 +77,13 @@ print(main("Losowy00CiągZnaków0Oddzielony0Zerami000"))            # CiągZnak�
 
 # Random Case
 
-# randomowy string o długości od 20 do 50 znaków
+# randomowy string o długości od 10 do 50 znaków
 # ASCII od 48 do 122
 
 def randomString():
     randString = ""
     a = random.randint(10, 50)
-
+    
     for i in range (0, a):
         zeroChance = random.randint(1, 10)
         char = random.randint(48, 122)
@@ -96,8 +95,8 @@ def randomString():
     return randString
 
 # print(randomString())
-# print(main(randomString()))
-# print(main(randomString()))
-# print(main(randomString()))
-# print(main(randomString()))
-# print(main(randomString()))
+print(main(randomString()))
+print(main(randomString()))
+print(main(randomString()))
+print(main(randomString()))
+print(main(randomString()))
