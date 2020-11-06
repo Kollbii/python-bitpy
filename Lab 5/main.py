@@ -6,9 +6,6 @@
 
 import random
 
-n = int(input("Podaj rozmiar tablicy [n x n]:  "))
-l = int(input("Podaj iloczyn do szukania: "))
-
 # Randomowa tablica o rozmiarze nxn wypełniona losowymi liczbami z zakresu
 
 def gener_tab(n):
@@ -86,9 +83,17 @@ _moves = [
     [2,-1]
 ]
 
+exit = 0
 
-print(draw_tab(gener_tab(n)))
-print(remove_duplicates(find_possible_pairs(gener_tab(n), l)))
+while exit == 0:
+    n = int(input("\nPodaj rozmiar tablicy [n x n]:  "))
+    l = int(input("Podaj iloczyn do szukania: "))
+
+    print(draw_tab(gener_tab(n)))
+    print(remove_duplicates(find_possible_pairs(gener_tab(n), l)))
+
+    exit = int(input("\nPress 1 to exit \nPress 0 to do it again :) \n"))
+
 
 # print(draw_tab(work_array))
 # print(find_possible_pairs(work_array, 12))
