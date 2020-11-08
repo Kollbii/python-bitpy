@@ -47,10 +47,10 @@ def find_possible_pairs(tab, l):
 
                 if((i + x >= 0 and i + x < len(tab)) and (j + y >= 0 and j + y < len(tab))):
                     if(check_multiplication(tab, i, j, x, y, l)):
-                        print(f"{i} {j} = {tab[i][j]} przejście o  {x} {y} -> {tab[i+x][j+y]}")
+                        print(f"Start index: [{i}] [{j}] = {tab[i][j]} przejście o {x} {y} --> [{i+x}] [{j+y}] = {tab[i+x][j+y]}")
                         possible_pairs.append([tab[i][j], tab[i+x][j+y]])
                         
-    print(draw_tab(tab))
+    print(f"\n{draw_tab(tab)}")
     return possible_pairs
 
 # No to tutaj wywalam te duplikaty bo zwykły set() na 2D array'u nie chciał działać :c
@@ -80,8 +80,10 @@ work_array_small = [
     [1,4,2],
 ]
 
+_letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','W','Y','Z']
+
 _moves = [
-    [1,2],  
+    [1,2],
     [2,1],  
     [-1,2],
     [-2,1],
@@ -94,4 +96,4 @@ _moves = [
 n = int(input("Podaj rozmiar tablicy [n x n]:  "))
 l = int(input("Podaj iloczyn do szukania: "))
 
-print(remove_duplicates(find_possible_pairs(gener_tab(n), l)))
+print(find_possible_pairs(gener_tab(n), l))
