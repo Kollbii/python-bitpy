@@ -41,14 +41,18 @@ def check_multiplication(tab, i, j, x, y, l):
 
 def find_possible_pairs(tab, l):
     possible_pairs = []
-    for i in range (0, len(tab)):
-        for j in range(0, len(tab[i])):
-            for x, y in _moves:
+    
+    if(len(tab) < 3):
+        print("Za mała tablica! Skoczek nie ma gdzie skoczyć :)")
+    else:
+        for i in range (0, len(tab)):
+            for j in range(0, len(tab[i])):
+                for x, y in _moves:
 
-                if((i + x >= 0 and i + x < len(tab)) and (j + y >= 0 and j + y < len(tab))):
-                    if(check_multiplication(tab, i, j, x, y, l)):
-                        print(f"Start index: [{i}] [{j}] = {tab[i][j]} przejście o {x} {y} --> [{i+x}] [{j+y}] = {tab[i+x][j+y]}")
-                        possible_pairs.append([tab[i][j], tab[i+x][j+y]])
+                    if((i + x >= 0 and i + x < len(tab)) and (j + y >= 0 and j + y < len(tab))):
+                        if(check_multiplication(tab, i, j, x, y, l)):
+                            print(f"Start index: [{i}] [{j}] = {tab[i][j]} przejście o {x} {y} --> [{i+x}] [{j+y}] = {tab[i+x][j+y]}")
+                            possible_pairs.append([tab[i][j], tab[i+x][j+y]])
                         
     print(f"\n{draw_tab(tab)}")
     return possible_pairs
@@ -80,7 +84,6 @@ work_array_small = [
     [1,4,2],
 ]
 
-_letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','W','Y','Z']
 
 _moves = [
     [1,2],
@@ -96,4 +99,11 @@ _moves = [
 n = int(input("Podaj rozmiar tablicy [n x n]:  "))
 l = int(input("Podaj iloczyn do szukania: "))
 
-print(find_possible_pairs(gener_tab(n), l))
+print(remove_duplicates(find_possible_pairs(gener_tab(n), l)))
+
+# for i in range(0, 5):
+#     tab_size = random.randint(1,10)
+#     ilcz = random.randint(1,20)
+#     print(f"\n------------------------------\nIloczyn: {ilcz} | Rozmiar tablicy: {tab_size}")
+#     print(remove_duplicates(find_possible_pairs(gener_tab(tab_size), ilcz)))
+#     print(f"\n------------------------------\n")
