@@ -9,10 +9,7 @@ import random
 # Randomowa tablica o rozmiarze nxn wypełniona losowymi liczbami z zakresu
 
 def gener_tab(n):
-    tab = [[0 for x in range(n)] for y in range(n)]     #dwuwymiarowa tablica wypełniona zerami
-    for i in range (0, n):
-        for j in range (0, n):
-            tab[i][j] = random.randint(1,9)             #potencjalne zwiększenie zakresu liczb w tablicy
+    tab = [[random.randint(1,100) for x in range(n)] for y in range(n)]     #dwuwymiarowa tablica wypełniona zerami
     return tab
 
 # Ładnie wypisze w formie "szachownicy"
@@ -36,7 +33,7 @@ def check_multiplication(tab, i, j, x, y, l):
         return True
     return False
 
-# Wyszukuje WSZYSTKIE możliwe przeskoki, podaje na wejście 'check_multiplication(...)'
+# Wyszukuje WSZYSTKIE możliwe przeskoki
 # Zwraca tablicę WSZYSTKICH możliwych przeskoków o zadanym iloczynie ale z POWTÓRZENIAMI
 
 def find_possible_pairs(tab, l):
@@ -57,7 +54,7 @@ def find_possible_pairs(tab, l):
     print(f"\n{draw_tab(tab)}")
     return possible_pairs
 
-# No to tutaj wywalam te duplikaty bo zwykły set() na 2D array'u nie chciał działać :c
+# No to tutaj wyrzucam te duplikaty bo zwykły set() na 2D array'u nie chciał działać
 
 def remove_duplicates(tab):
     seen = set()
@@ -78,13 +75,6 @@ work_array = [
     [2,3,6,3,2]
 ]
 
-work_array_small = [
-    [5,2,6],
-    [1,2,9],
-    [1,4,2],
-]
-
-
 _moves = [
     [1,2],
     [2,1],  
@@ -96,14 +86,14 @@ _moves = [
     [2,-1]
 ]
 
-n = int(input("Podaj rozmiar tablicy [n x n]:  "))
-l = int(input("Podaj iloczyn do szukania: "))
+# n = int(input("Podaj rozmiar tablicy [n x n]:  "))
+# l = int(input("Podaj iloczyn do szukania: "))
 
-print(remove_duplicates(find_possible_pairs(gener_tab(n), l)))
+# print(remove_duplicates(find_possible_pairs(gener_tab(n), l)))
 
-# for i in range(0, 5):
-#     tab_size = random.randint(1,10)
-#     ilcz = random.randint(1,20)
-#     print(f"\n------------------------------\nIloczyn: {ilcz} | Rozmiar tablicy: {tab_size}")
-#     print(remove_duplicates(find_possible_pairs(gener_tab(tab_size), ilcz)))
-#     print(f"\n------------------------------\n")
+for i in range(0, 5):
+    tab_size = random.randint(1,10)
+    ilcz = random.randint(1,20)
+    print(f"\n------------------------------\nIloczyn: {ilcz} | Rozmiar tablicy: {tab_size}")
+    print(remove_duplicates(find_possible_pairs(gener_tab(tab_size), ilcz)))
+    print(f"\n------------------------------\n")
