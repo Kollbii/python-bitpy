@@ -59,7 +59,7 @@ def sum_elements_collumn(tab):
     sum = 0
     for i in range (0, len(tab)):
         for j in range (0, len(tab)):
-                sum += int(tab[j][i])
+            sum += int(tab[j][i])
         col_sum.append(sum)
         sum = 0
     # print(coll_sum)
