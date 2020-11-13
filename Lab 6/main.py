@@ -31,8 +31,8 @@ def gener_9x9():
     mother_row = first_row()
 
     print(f"Mother row: {mother_row}\n")
-    f = open("Lab 6\plansza.txt", "w")
-    f.write(f"Mother row: {mother_row}\n")
+    # f = open("Lab 6\ base.txt", "a" , encoding='utf-8')
+    # f.write(f"Mother row: {mother_row}\n")
 
     for row in range (0, 9):
         if row == 0:
@@ -54,9 +54,36 @@ def gener_9x9():
         else:
             tab.append(mother_row[8:] + mother_row[:8])
 
-    drawed = draw_tab(tab)
-    f.write(str(drawed))
-    f.close()
+    # drawed = draw_tab(tab)
+    # f.write(str(drawed))
+    # f.close()
+    return tab
+
+def swap_ints(tab):
+    random_repetitions = random.randint(5,10)
+    for x in range(random_repetitions):
+
+        fle = random.randint(1, 5)
+        sle = random.randint(6, 9)
+
+        # print(f"{fle} zamieniam z {sle}")
+
+        for i in range (0, len(tab)):
+            for j in range (0, len(tab[i])):
+                if(tab[i][j] == fle):
+                    tab[i][j] = sle
+                elif(tab[i][j] == sle):
+                    tab[i][j] = fle
+
+    return tab
+
+def delete_random_positions(tab):
+    for delete in range (0, random.randint(50,80)):
+        ri = random.randint(0, 8)
+        rj = random.randint(0, 8)
+        if(tab[ri][rj] != '•'):
+            tab[ri][rj] = '•'
+                
     return tab
 
 def draw_tab(tab):
@@ -71,65 +98,69 @@ def draw_tab(tab):
                 draw += ''.join("  ") # •
     return draw
 
-def randomize(tab):
-    random_repetitions = random.randint(5,10)
-    for x in range(random_repetitions):
-
-        fle = random.randint(1, 5)
-        sle = random.randint(6, 9)
-
-        print(f"{fle} zamieniam z {sle}")
-
-        for i in range (0, len(tab)):
-            for j in range (0, len(tab[i])):
-                if(tab[i][j] == fle):
-                    tab[i][j] = sle
-                elif(tab[i][j] == sle):
-                    tab[i][j] = fle
-
-    return tab
-
-def delete_random(tab):
-    for delete in range (0, random.randint(40,60)):
-        # random_chance = random.randint(1,5)
-        # if(random_chance == 1):
-        ri = random.randint(0, 8)
-        rj = random.randint(0, 8)
-        if(tab[ri][rj] != '•'):
-            tab[ri][rj] = '•'
-                
-    f = open("Lab 6\plansza.txt", "w", encoding='utf-8')
-    f.write(f"Usunięte i zrandomizowane: \n {draw_tab(tab)}")
-    f.close()
-    return tab
-
 def draw_nice(tab):
-    draw = ''    
+    draw = '┌─────────┬─────────┬─────────┐\n'    
     for i in range (0, len(tab)):
+        if (i == 3 or i == 6):
+            draw += ''.join("├─────────┼─────────┼─────────┤\n")
         for j in range (0, len(tab)):
             if(j == 2 or j ==5):
                 draw += ''.join(str(tab[i][j]))
-                draw += ''.join("|")
-                draw += ''.join("")
+                draw += ''.join(" │ ")
             elif(j == 8):
                 draw += ''.join(str(tab[i][j]))
-                draw += ''.join("|\n")
+                draw += ''.join(" │\n")
+            elif(j == 0):
+                draw += ''.join("│ ")
+                draw += ''.join(str(tab[i][j]))
+                draw += ''.join("  ")
             else:
                 draw += ''.join(str(tab[i][j]))
                 draw += ''.join("  ") # •
-
+    draw += ''.join("└─────────┴─────────┴─────────┘\n")
+            
     return draw
 
-tab = gener_9x9()
-print(draw_tab(tab))
 
-randomized_tab = randomize(tab)
-print(draw_tab(randomized_tab))
+#To show
 
-deleted_tab = delete_random(tab)
-print(draw_tab(deleted_tab))
-print(draw_nice(deleted_tab))
+# tab = gener_9x9()
+# print(draw_tab(tab))
 
-f = open("Lab 6\plansza.txt", "w", encoding='utf-8')
-f.write(f"Usunięte i zrandomizowane:\n{draw_nice(deleted_tab)}")
+# randomized_tab = swap_ints(tab)
+# print(draw_tab(randomized_tab))
+# f = open("Lab 6\ baseRandomized.txt", "w", encoding='utf-8')
+# f.write(f"GOOD LUCK!\n{draw_tab(randomized_tab)}")
+# f.close()
+
+# playable = delete_random_positions(randomized_tab)
+# nice_board = draw_nice(playable)
+# print(draw_tab(playable))
+# print(draw_nice(playable))
+
+# f = open("Lab 6\ board.txt", "w", encoding='utf-8')
+# f.write(f"GOOD LUCK!\n{nice_board}")
+# f.close()
+
+f = open("Lab 6\ board.txt", 'w', encoding='utf-8')
+f.write("")
 f.close()
+ans = open("Lab 6\ base.txt", 'w', encoding='utf-8')
+ans.write("")
+ans.close()
+
+for i in range (1, 6):
+    tab = gener_9x9()
+    randomized_tab = swap_ints(tab)
+    a = draw_nice(randomized_tab)
+    playable = delete_random_positions(randomized_tab)
+    nice_board = draw_nice(playable)
+    print(draw_nice(playable))
+
+    f = open("Lab 6\ board.txt", 'a', encoding='utf-8')
+    f.write(f"Board no. {i}\n{nice_board}\n")
+    f.close()
+
+    ans = open("Lab 6\ base.txt", 'a', encoding='utf-8')
+    ans.write(f"Board {i} answer:\n{a}")
+    ans.close()
