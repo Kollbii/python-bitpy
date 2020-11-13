@@ -9,7 +9,7 @@ import random
 # Randomowa tablica o rozmiarze nxn wypełniona losowymi liczbami z zakresu
 
 def gener_tab(n):
-    tab = [[random.randint(1,100) for x in range(n)] for y in range(n)]     #dwuwymiarowa tablica wypełniona zerami
+    tab = [[random.randint(1,9) for x in range(n)] for y in range(n)]     #dwuwymiarowa tablica wypełniona zerami
     return tab
 
 # Ładnie wypisze w formie "szachownicy"
