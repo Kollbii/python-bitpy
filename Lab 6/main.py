@@ -5,35 +5,29 @@
 # Ponadto trzeba obsłużyć niezbędne wyjątki.
 
 import random
-from colorama import init
-from termcolor import colored
-init()
 
-# mother row | baza 
-
+# Baza całej tabeli
 def first_row():
-    tab = []
+    mother_row = []
     nums =[]
     for i in range (0, 9):
         rand = random.randint(1, 9)
         if rand not in nums:
-            tab.append(rand)
+            mother_row.append(rand)
             nums.append(rand)
         else:
             while rand in nums:
                 rand = random.randint(1, 9)
-            tab.append(rand)
+            mother_row.append(rand)
             nums.append(rand)
-    return tab
+    return mother_row
 
 def gener_9x9():
     tab =[]
     mother_row = first_row()
 
     print(f"Mother row: {mother_row}\n")
-    # f = open("Lab 6\ base.txt", "a" , encoding='utf-8')
-    # f.write(f"Mother row: {mother_row}\n")
-
+    # To się na pewno dało lepiej ale spełnia swoją funkcję i jestem happy, że na to wpadłem
     for row in range (0, 9):
         if row == 0:
             tab.append(mother_row)
@@ -54,9 +48,6 @@ def gener_9x9():
         else:
             tab.append(mother_row[8:] + mother_row[:8])
 
-    # drawed = draw_tab(tab)
-    # f.write(str(drawed))
-    # f.close()
     return tab
 
 def swap_ints(tab):
