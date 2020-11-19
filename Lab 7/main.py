@@ -62,7 +62,7 @@ def get_checked_knights(board):
                             checked_knights += 2
 
     if checked_knights == 0:
-        print(f"\nŻaden ♞  się nie szachuje.")
+        print(f"Żaden ♞  się nie szachuje.")
     elif checked_knights == 2:
         print(f"\nDokładnie jedna para ♞  się szachuje!")
     else:
