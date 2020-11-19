@@ -1,8 +1,7 @@
 # Zadanie 3.
-# Wykorzystując funkcje, napisz program tworzący plansze do sudoku. Plansze należy
-# następnie zapisać do osobnych plików. Należy zapisać je w takiej formie, żeby były czytelne
-# dla ludzkiego oka.
-# Ponadto trzeba obsłużyć niezbędne wyjątki.
+# Wykorzystując funkcje, napisz program tworzący plansze do sudoku.
+# Plansze zapisać do osobnego pliku. Zapisać je w takiej formie, żeby były czytelne dla ludzkiego oka.
+# Obsłużyć niezbędne wyjątki.
 
 import random
 
@@ -20,14 +19,14 @@ def first_row():
                 rand = random.randint(1, 9)
             mother_row.append(rand)
             nums.append(rand)
-    return mother_row
+    return mother_row           # [1,2,3,6,7,8,4,5,9]
 
 def gener_9x9():
     tab =[]
     mother_row = first_row()
 
     print(f"Mother row: {mother_row}\n")
-    # To się na pewno dało lepiej ale spełnia swoją funkcję i jestem happy, że na to wpadłem
+    # To się na pewno dało lepiej ale spełnia swoją funkcję i jestem happy
     for row in range (0, 9):
         if row == 0:
             tab.append(mother_row)
@@ -51,7 +50,7 @@ def gener_9x9():
     return tab
 
 def swap_ints(tab):
-    random_repetitions = random.randint(5,10)
+    random_repetitions = random.randint(10,20)
     for x in range(random_repetitions):
 
         fle = random.randint(1, 5)
@@ -69,12 +68,14 @@ def swap_ints(tab):
     return tab
 
 def delete_random_positions(tab):
-    for delete in range (0, random.randint(50,80)):
+    counter = 0
+    # for delete in range (0, random.randint(80)):
+    while counter < 60:
         ri = random.randint(0, 8)
         rj = random.randint(0, 8)
         if(tab[ri][rj] != '•'):
             tab[ri][rj] = '•'
-                
+            counter += 1
     return tab
 
 def draw_tab(tab):
@@ -113,30 +114,10 @@ def draw_nice(tab):
     return draw
 
 
-#To show
-
-# tab = gener_9x9()
-# print(draw_tab(tab))
-
-# randomized_tab = swap_ints(tab)
-# print(draw_tab(randomized_tab))
-# f = open("Lab 6\ baseRandomized.txt", "w", encoding='utf-8')
-# f.write(f"GOOD LUCK!\n{draw_tab(randomized_tab)}")
-# f.close()
-
-# playable = delete_random_positions(randomized_tab)
-# nice_board = draw_nice(playable)
-# print(draw_tab(playable))
-# print(draw_nice(playable))
-
-# f = open("Lab 6\ board.txt", "w", encoding='utf-8')
-# f.write(f"GOOD LUCK!\n{nice_board}")
-# f.close()
-
-f = open("Lab 6\ board.txt", 'w', encoding='utf-8')
+f = open("Lab 6/board.txt", 'w', encoding='utf-8')
 f.write("")
 f.close()
-ans = open("Lab 6\ base.txt", 'w', encoding='utf-8')
+ans = open("Lab 6/base.txt", 'w', encoding='utf-8')
 ans.write("")
 ans.close()
 
@@ -148,10 +129,10 @@ for i in range (1, 6):
     nice_board = draw_nice(playable)
     print(draw_nice(playable))
 
-    f = open("Lab 6\ board.txt", 'a', encoding='utf-8')
+    f = open("Lab 6/board.txt", 'a', encoding='utf-8')
     f.write(f"Board no. {i}\n{nice_board}\n")
     f.close()
 
-    ans = open("Lab 6\ base.txt", 'a', encoding='utf-8')
+    ans = open("Lab 6/base.txt", 'a', encoding='utf-8')
     ans.write(f"Board {i} answer:\n{a}")
     ans.close()
