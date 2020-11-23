@@ -80,14 +80,12 @@ _moves = [
     [2,-1]
 ]
 
-board = [['•' for i in range(50)] for j in range(50)]   # zmienić na 100 potem
-knights_number = random.randint(2,100)
+def start():
+    board = [['•' for i in range(30)] for j in range(30)]   # zmienić na 100 potem
+    knights_number = random.randint(2,100)
 
-knights_board = get_random_position_knights(board, knights_number)
-checked_board = get_checked_knights(knights_board)
-print(draw_tab(checked_board))
-print(f"\u001b[32mItWorks \u001b[0m")
+    knights_board = get_random_position_knights(board, knights_number)
+    checked_board = get_checked_knights(knights_board)
+    print(draw_tab(checked_board))
 
-# f = open("Lab 7/board.txt" , "w", encoding='utf-8')
-# f.write(draw_tab(get_random_position_knights(board, 2)))
-# f.close()
+start()
