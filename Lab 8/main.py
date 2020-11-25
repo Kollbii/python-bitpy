@@ -20,31 +20,9 @@ def draw_tab(tab):
                 draw += ''.join(" ") # •
     return draw
 
-def get_start_position_knights(board):
-    # board[random.randint(0,7)][random.randint(0,7)] = '\u001b[32m♞\u001b[0m'
+def get_start_position_knight(board):
     board[random.randint(0, len(board)) - 1][random.randint(0, len(board)) - 1] = '\u001b[32m♞\u001b[0m'
-    return board
-
-def does_check(board, i, j, x, y):
-    if board[i][j] == board[i + x][j + y]:
-        return True
-    return False
-
-def get_checked_knights(board):
-    checked_knights  = 0
-
-    for i in range (0, len(board)):
-        for j in range (0, len(board[i])):
-
-            if board[i][j] == '\u001b[32m♞\u001b[0m':  # sprawdza tylko zielone skoczki
-                for x, y in _moves:
-                    if ((i + x >= 0 and i + x < len(board)) and (j + y >= 0 and j + y < len(board))):
-                        checked = does_check(board, i, j, x, y)
-                        if checked == True:
-                            board[i][j] = '\u001b[31m♞\u001b[0m'
-                            board[i + x][j + y] = '\u001b[31m♞\u001b[0m'
-                            print(f"♞ na [{i}][{j}]\t szachuje ♞ na [{i + x}][{j + y}]")
-                            checked_knights += 2
+    # board[0][0] = '\u001b[32m♞\u001b[0m'
     return board
 
 def knight_problem_solve(board):
@@ -66,32 +44,20 @@ def knight_problem_solve(board):
     return board
 
 _moves = [
-    [1,2],
+    [2,-1],
     [2,1],  
+    [1,2],
     [-1,2],
-    [-2,1],
-    [-1,-2],
     [-2,-1],
     [1,-2],
-    [2,-1]
-]
-
-_moves1 = [
-    [2,1],
-    [1,2],  
-    [-1,2],
-    [-2,1],
-    [-2,-1],
     [-1,-2],
-    [1,-2],
-    [2,-1]
+    [-2,1]
 ]
 
 def start():
-    for i in range(0, 5):
+    for i in range(0, 1):
         board = [['•' for i in range(8)] for j in range(8)]
-
-        knights_board = get_start_position_knights(board)
+        knights_board = get_start_position_knight(board)
         checked_board = knight_problem_solve(knights_board)
         print(draw_tab(checked_board))
 
