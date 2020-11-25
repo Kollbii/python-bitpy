@@ -11,6 +11,8 @@
 # 3. Szachuje się więcej niż dwa skoczki.
 
 import random
+import time
+import os
 from colorama import init
 init()
 
@@ -47,7 +49,7 @@ def does_check(board, i, j, x, y):
 
 def get_checked_knights(board):
     checked_knights  = 0
-
+    info = ''
     for i in range (0, len(board)):
         for j in range (0, len(board[i])):
 
@@ -58,8 +60,13 @@ def get_checked_knights(board):
                         if checked == True:
                             board[i][j] = '\u001b[31m♞\u001b[0m'
                             board[i + x][j + y] = '\u001b[31m♞\u001b[0m'
-                            print(f"♞ na [{i}][{j}]\t szachuje ♞ na [{i + x}][{j + y}]")
                             checked_knights += 2
+                            os.system('cls')
+                            info += ''.join(f"♞ na [{i}][{j}]\t szachuje ♞ na [{i + x}][{j + y}]\n")
+                            print(info)
+                            # print(f"♞ na [{i}][{j}]\t szachuje ♞ na [{i + x}][{j + y}]")
+                            print(draw_tab(board))
+                            time.sleep(0.5)
 
     if checked_knights == 0:
         print(f"Żaden ♞  się nie szachuje.")
@@ -81,11 +88,13 @@ _moves = [
 ]
 
 def start():
-    board = [['•' for i in range(30)] for j in range(30)]   # zmienić na 100 potem
-    knights_number = random.randint(2,100)
+    for i in range(0,1):
+        board = [['•' for i in range(30)] for j in range(30)]   # zmienić na 100 potem
+        knights_number = random.randint(2,100)
 
-    knights_board = get_random_position_knights(board, knights_number)
-    checked_board = get_checked_knights(knights_board)
-    print(draw_tab(checked_board))
+        knights_board = get_random_position_knights(board, knights_number)
+        checked_board = get_checked_knights(knights_board)
+        # print(draw_tab(checked_board))
+        
 
 start()
