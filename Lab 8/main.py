@@ -8,6 +8,10 @@ import time
 from colorama import init
 init()
 
+GREEN = "\u001b[32m"
+RED = "\u001b[31m"
+RESET = "\u001b[0m"
+
 def draw_tab(tab):
     draw = ''    
     for i in range (0, len(tab)):
@@ -21,7 +25,7 @@ def draw_tab(tab):
     return draw
 
 def get_start_position_knight(board):
-    board[random.randint(0, len(board)) - 1][random.randint(0, len(board)) - 1] = '\u001b[32m♞\u001b[0m'
+    board[random.randint(0, len(board)) - 1][random.randint(0, len(board)) - 1] = f'{GREEN}♞{RESET}'
     # board[0][0] = '\u001b[32m♞\u001b[0m'
     return board
 
@@ -39,7 +43,7 @@ def knight_problem_solve(board):
                             board[i + x][j + y] = '\u001b[32m♞\u001b[0m'
                             os.system('cls')
                             print(draw_tab(board))
-                            time.sleep(0.1)
+                            time.sleep(0.2)
                             return knight_problem_solve(board)
     return board
 
@@ -54,11 +58,49 @@ _moves = [
     [-2,1]
 ]
 
+def find_next_pos(pos):
+    if pos == 63:
+        return [4, 3]       # Środek boardu, pozycja 0
+    for i in range(0, len(solution)):
+        for j in range(0, len(solution[i])):
+            if solution[i][j] == pos + 1:
+                return [i, j]
+
+def knight_problem_solve_from_solution(board, c):
+    if c == 63:
+        return "Koniec trasy!"
+
+    for i in range (0, len(board)):
+        for j in range (0, len(board[i])):
+            if board[i][j] == f'{GREEN}♞{RESET}':
+                pos = solution[i][j]
+                next_pos = find_next_pos(pos)
+                board[i][j] = f'{RED}♞{RESET}'
+                board[next_pos[0]][next_pos[1]] = f'{GREEN}♞{RESET}'
+                os.system('cls')
+                print(next_pos)
+                print(draw_tab(board))
+                time.sleep(0.2)
+                c += 1
+                return knight_problem_solve_from_solution(board, c)
+
+solution = [        
+    [ 5, 18, 57, 36,  3, 16, 59, 46],
+    [56, 37,  4, 17, 58, 47, 14, 61],
+    [19,  6, 35,  2, 15, 60, 45, 48],
+    [38, 55, 28, 31, 34,  1, 62, 13], 
+    [ 7, 20, 33,  0, 29, 26, 49, 44],
+    [54, 39, 30, 27, 32, 63, 12, 25], 
+    [21,  8, 41, 52, 23, 10, 43, 50],
+    [40, 53, 22,  9, 42, 51, 24, 11],
+]
+
 def start():
     for i in range(0, 1):
         board = [['•' for i in range(8)] for j in range(8)]
         knights_board = get_start_position_knight(board)
-        checked_board = knight_problem_solve(knights_board)
-        print(draw_tab(checked_board))
+        # checked_board = knight_problem_solve(knights_board)
+        knight_problem_solve_from_solution(knights_board, 0)
+        # print(draw_tab(checked_board))
 
 start()
