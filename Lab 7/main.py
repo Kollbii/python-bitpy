@@ -61,12 +61,12 @@ def get_checked_knights(board):
                             board[i][j] = '\u001b[31m♞\u001b[0m'
                             board[i + x][j + y] = '\u001b[31m♞\u001b[0m'
                             checked_knights += 2
-                            os.system('cls')
                             info += ''.join(f"♞ na [{i}][{j}]\t szachuje ♞ na [{i + x}][{j + y}]\n")
+                            # os.system('cls')
+                            # # print(f"♞ na [{i}][{j}]\t szachuje ♞ na [{i + x}][{j + y}]")
                             print(info)
-                            # print(f"♞ na [{i}][{j}]\t szachuje ♞ na [{i + x}][{j + y}]")
-                            print(draw_tab(board))
-                            time.sleep(0.5)
+                            # print(draw_tab(board))
+                            # time.sleep(0.5)
 
     if checked_knights == 0:
         print(f"Żaden ♞  się nie szachuje.")
@@ -88,13 +88,13 @@ _moves = [
 ]
 
 def start():
-    for i in range(0,1):
-        board = [['•' for i in range(30)] for j in range(30)]   # zmienić na 100 potem
-        knights_number = random.randint(2,100)
+    # for i in range(0,1):
+    board = [['•' for i in range(30)] for j in range(30)]   # zmienić na 100 potem
+    knights_number = random.randint(2,100)
 
-        knights_board = get_random_position_knights(board, knights_number)
-        checked_board = get_checked_knights(knights_board)
-        # print(draw_tab(checked_board))
+    knights_board = get_random_position_knights(board, knights_number)
+    checked_board = get_checked_knights(knights_board)
+    print(draw_tab(checked_board))
         
 
 start()
