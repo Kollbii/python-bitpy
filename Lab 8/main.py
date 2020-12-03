@@ -5,8 +5,6 @@
 import random
 import os
 import time
-from colorama import init
-init()
 
 GREEN = "\u001b[32m"
 RED = "\u001b[31m"
@@ -85,9 +83,11 @@ def knight_problem_2nd(board, x, y, move_x, move_y, pos):
         if (new_x >= 0 and new_x < len(board) and new_y >= 0 and new_y < len(board) and board[new_x][new_y] == '•'):
             board[new_x][new_y] = f'{GREEN}♞{RESET}'
             board[x][y] = f'{RED}♞{RESET}'
+
             os.system('cls')
             print(draw_tab(board))
-            time.sleep(0.1)
+            time.sleep(0.01)
+
             if(knight_problem_2nd(board, new_x, new_y, move_x, move_y, pos+1)):
                 return True
 
@@ -121,7 +121,7 @@ def start():
     move_y = [1, 2, 2, 1, -1, -2, -2, -1]
     board = [['•' for i in range(8)] for j in range(8)]
     # knights_board = get_start_position_knight(board)
-    # checked_board = knight_problem_solve(knights_board)
+    # knight_problem_solve(knights_board)
     # if knight_problem_solve_from_solution(knights_board, 0):
     #     print("Koniec trasy! :)")
     pos = 1
