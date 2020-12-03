@@ -33,7 +33,7 @@ def fibo_recursive_mem(n, memo):
 
 def start():
     memo = {0: 0, 1: 1}
-    f = open("KryptonimS/file.txt", 'r')        # Zrób sobie plik. I podmień scieżkę ^^ 
+    f = open("KryptonimS/file.txt", 'r')
     lines = f.readlines()       # Jak tablica
     for i in range (0, len(lines)):
         n = int(lines[i])
