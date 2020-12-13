@@ -1,6 +1,24 @@
 import re
 import random
-# zwaraca indeksy gdzie znajduje się '0'
+
+class TestTakeOut:
+    def testTakeOutString(self):
+        string1 = "0standard0"
+        result1 = main(string1)
+        assert result1 == "standard"
+
+        string2 = "przykladbezer"
+        result2 = main(string2)
+        assert result2 == "Podano jedno lub żadnych zer\n"
+
+        string3 = "aaa0Siemaneczko0Duzo0Zer0aaa"
+        result3 = main(string3)
+        assert result3 == "SiemaneczkoDuzoZer"
+
+        string4 = "000000000434854719300"
+        result4 = main(string4)
+        assert result4 == "4348547193"
+
 
 def indexesOf0(stringArr):
     indexes = []
@@ -9,24 +27,18 @@ def indexesOf0(stringArr):
             indexes.append(i)
     return indexes
 
-# rekurencja i zebranie wszystkich słów pomiędzy '0'
-# usunięcie zer pomiędzy zerami
-
 def takeOut(givenString, stringArr, g): 
     final = g
     takenOut = re.search(('0(.+?)0'), givenString)
     indexes = indexesOf0(stringArr)
-    # print(indexes)
 
     if takenOut != None:
         takenOut = re.search(('0(.+?)0'), givenString).group(1)
-    
         for i in range (0, len(takenOut)):
             if ord(takenOut[i]) == 48:
                 newString = givenString[indexes[1]:]
                 newArr = list(newString)
                 return takeOut(newString, newArr, final)
-
         final += ''.join(takenOut)
         newString = givenString[indexes[1]:]
         newArr = list(newString)
@@ -34,19 +46,16 @@ def takeOut(givenString, stringArr, g):
     else:
         return final
 
-# zamiana na kody dziesiętne
-
 def getDecFromString(givenString):
     decString = []
     stringArr = list(givenString)
     for i in range(0, len(givenString)):
-        decString.append(ord(stringArr[i]))     # wykorzystanie funkcji ord()
-    return decString                            # podanej w poleceniu
+        decString.append(ord(stringArr[i]))
+    return decString
 
 
 def main(givenString):
     a = re.search(('0(.+?)0'), givenString)
-
     if(a):
         stringArr = list(givenString)
         final = takeOut(givenString, stringArr, '')
@@ -54,7 +63,8 @@ def main(givenString):
         if len(sortedFinalASCII) < 5:
             return f"Jest mniej niż 5 kodów ASCII\n"
         else:
-            return f"Podany string: \t\t\t{givenString} \nString po wycięciu z zer: \t{final} \nKody ASCII: \n{getDecFromString(final)} \n5 co do wartości kod ASCII: {sortedFinalASCII[4]}\n"
+            return final
+            # return f"Podany string: \t\t\t{givenString} \nString po wycięciu z zer: \t{final} \nKody ASCII: \n{getDecFromString(final)} \n5 co do wartości kod ASCII: {sortedFinalASCII[4]}\n"
     else:
         return "Podano jedno lub żadnych zer\n"
 
@@ -68,14 +78,6 @@ def main(givenString):
 # print(main("000000000434854719300"))                              # 4348547193 | 55
 # print(main("Pominę0Parę000Wyrazów00000BezZeraNaKoncuIPoczątku"))  # ParęWyrazów | 119
 # print(main("Losowy00CiągZnaków0Oddzielony0Zerami000"))            # CiągZnakówOddzielonyZerami | 100
-
-# User Case
-
-# givenString  = str(input("Wprowadź dowolny ciąg znaków: "))
-# print(main(givenString))
-
-
-# Random Case
 
 # randomowy string o długości od 10 do 50 znaków
 # ASCII od 48 do 122
@@ -94,7 +96,6 @@ def randomString():
 
     return randString
 
-# print(randomString())
 print(main(randomString()))
 print(main(randomString()))
 print(main(randomString()))

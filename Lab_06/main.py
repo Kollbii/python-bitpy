@@ -129,7 +129,7 @@ for i in range (1, 6):
     nice_board = draw_nice(playable)
     print(draw_nice(playable))
 
-    f = open("Lab 6/board.txt", 'a', encoding='utf-8')
+    f = open("Lab_06/board.txt", 'a', encoding='utf-8')
     f.write(f"Board no. {i}\n{nice_board}\n")
     f.close()
 
