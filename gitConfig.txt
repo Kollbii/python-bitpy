@@ -1,4 +1,4 @@
-*Git global setup
+﻿*Git global setup
 git config --global user.name "Kollbi"
 git config --global user.email "lkollbek@gmail.com"
 
@@ -42,6 +42,6 @@ $> git remote -v
 $> git push -u origin master.
 
 *W sumie wystarczy*
-> git add '\Test Program\TestProgram.py'
+> git add 'PathToFile'
 > git commit -m 'Version 1.0.1'
 > git push -u origin master
