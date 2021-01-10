@@ -1,5 +1,6 @@
 /.vscode
 /Tests/test.py
+Tests/*
 /Others/*
 /Lab_06/base.txt
 /Lab_06/board.txt
