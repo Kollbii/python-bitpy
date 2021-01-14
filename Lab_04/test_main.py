@@ -18,3 +18,8 @@ class TestMyFile(unittest.TestCase):
     def test_main3(self):
         result = main.main("Pominę0Parę000Wyrazów00000BezZeraNaKoncuIPoczątku")
         self.assertEqual(result, "ParęWyrazów")
+
+    def test_indexes(self):
+        string = "0standard0"
+        result = main.indexesOf0(string)
+        assert result == [0,9]
