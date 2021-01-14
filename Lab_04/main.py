@@ -33,6 +33,11 @@ class TestTakeOut:
         result = main(string)
         assert result == "ParęWyrazów"
 
+    def testIndexes(self):
+        string = "0standard0"
+        result = indexesOf0(string)
+        assert result == [0,9]
+
 def indexesOf0(stringArr):
     indexes = []
     for i in range(0, len(stringArr)):
@@ -76,7 +81,7 @@ def main(givenString):
             return f"Jest mniej niż 5 kodów ASCII\n"
         else:
             return final
-            #return f"Podany string: \t\t\t{givenString} \nString po wycięciu z zer: \t{final} \nKody ASCII: \n{getDecFromString(final)} \n5 co do wartości kod ASCII: {sortedFinalASCII[4]}\n"
+            # return f"Podany string: \t\t\t{givenString} \nString po wycięciu z zer: \t{final} \nKody ASCII: \n{getDecFromString(final)} \n5 co do wartości kod ASCII: {sortedFinalASCII[4]}\n"
     else:
         return "Podano jedno lub żadnych zer\n"
 
