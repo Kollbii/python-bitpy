@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 import mysql.connector
-import time
 from collections import deque
 
 db = mysql.connector.connect(host="localhost",user="root",passwd="",database="sql_bool")
@@ -203,9 +202,11 @@ btn = Button(frame_right, text="Dodaj zlecenie", command=insert_order)
 btn.grid(sticky=N, row=4, column=0)
 btn.configure(background='#cca4c5', foreground='#28085f')
 
+canvr = Canvas(frame_right, width=270, height=207)
+canvr.grid(row=5, columnspan=2)
+img = PhotoImage(file="Lab_11\oberiba.png")
+canvr.create_image(-10,10, anchor=NW ,image=img)
 ###################
-
-
 
 root.mainloop()
 db.close()
