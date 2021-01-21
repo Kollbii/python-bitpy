@@ -3,7 +3,7 @@ from tkinter import messagebox
 import mysql.connector
 from collections import deque
 
-db = mysql.connector.connect(host="localhost",user="root",passwd="",database="sql_bool")
+db = mysql.connector.connect(host="localhost",user="root",passwd="",database="sql_bool_wdi")
 
 root = Tk()
 root.resizable(width=True, height=True)
@@ -94,13 +94,14 @@ def insert_order():
     if (progr == "" or name == "" or lines == ""):
         messagebox.showerror("Błąd wpisywania", "Wszystkie pola są wymagane!")
     else:
-        #sql_query = f"INSERT INTO `programisci` (`id`, `jezykid`, `imie`, `nazwisko`) VALUES (NULL, '4', 'Patryk', 'Patryczek');"
         sql_query = f"INSERT INTO `zlecenia` (`id`, `programistaid`, `nazwa`, `iloscKodu`)\
                     VALUES (NULL, '{progr}', '{name}', '{lines}');"
+        # sql_query = "INSERT INTO `zlecenia` (`id`, `programistaid`, `nazwa`, `iloscKodu`)\
+        # VALUES (NULL, '" + progr + "', '" + name + "', '" + lines + "');"
+        print(sql_query)
         crs = db.cursor()
-        crs.execute(sql_query)
+        crs.execute(sql_query) #USUNĄĆ TRUE JAK MA NIE DZIAŁAĆ DROP
         crs.execute("commit")
-        # print(progr, name, lines)
         messagebox.showinfo("Wpisywanie", "Wpisano dane!")
 ########################
 
