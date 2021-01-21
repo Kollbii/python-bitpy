@@ -13,7 +13,7 @@ class TestMyFile(unittest.TestCase):
 
     def test_main2(self):
         result = main.main("przykladbezer")
-        self.assertEqual(result, "Podano jedno lub żadnych zer\n")
+        self.assertNotEqual(result, "przykladbezzer")
 
     def test_main3(self):
         result = main.main("Pominę0Parę000Wyrazów00000BezZeraNaKoncuIPoczątku")
