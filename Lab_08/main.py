@@ -86,7 +86,7 @@ def knight_problem_2nd(board, x, y, move_x, move_y, pos):
 
             os.system('cls')
             print(draw_tab(board))
-            time.sleep(0.01)
+            time.sleep(0.00001)
 
             if(knight_problem_2nd(board, new_x, new_y, move_x, move_y, pos+1)):
                 return True

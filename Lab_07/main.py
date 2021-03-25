@@ -10,6 +10,8 @@
 # 2. Szachują się dwa skoczki.
 # 3. Szachuje się więcej niż dwa skoczki.
 
+!#/usr/bin/python3
+
 import random
 import time
 import os
