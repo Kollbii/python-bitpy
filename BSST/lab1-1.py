@@ -48,6 +48,7 @@ myChars2 = {
 
 string1 = "P?A  S?YV%  +?XV?+NE  L+NZK  M%$%?SZ?WQYNE+$N  $TQ  PQLY  VE?SQ  WQ+HTQE+$N  H%$TQV?+  +RK?R+?  E/?K?AYQKNLYNAQ  PQ+NA%V?  YQALYX  +?L+NZK%V?$Q*%"
 string2 = "WXQOWK LXCFRXBCXUAWJO R URXLXCFRXBCXUAWJO J AKAWXQOBM WXNXRUSDEQOWKBCUKBM FDEPACOQK UO NOLDEOWDEROBM"
+string3 = "rq7t{7vH_rFH_vI6_pHH1_qI67}"
 
 if __name__ == '__main__':
 
@@ -56,6 +57,8 @@ if __name__ == '__main__':
     # STRING 1
     cipher = ["?", "$", "T", "Q", "A", "P", "L", "Y", "X", "+", "K","Z","L","Y","V","W","E","S","%","N","H","R","/","*"]
     alphabet = ["a", "n", "i", "e","k", "j", "s", "t", "u", "z", "r","f","L", "Y", "w","b","c","l","o","y","p","d","h","g"]
+    # cipher = ["r","q","7","t"]
+    # alphabet = ["d","c","t","f"]
     decrypted = ""
 
     for element in ciphertext:
