@@ -147,3 +147,7 @@ cython_debug/
 *.exe
 *.pdf
 *.txt
+*.png
+*.jpg
+*.drawio
+others
