@@ -17,3 +17,5 @@ plt.title("Równanie toru")
 plt.xlabel("oś X")
 plt.ylabel("oś Y")
 plt.show()
+
+#random test
